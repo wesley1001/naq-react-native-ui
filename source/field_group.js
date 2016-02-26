@@ -38,21 +38,21 @@ export default class Component extends React.Component {
 
     renderFields(fields, begin, end) {
         return fields.slice(begin, end).map((field, i) => {
-            if (field.fieldType === "FieldText") {
+            if (field.fieldtype === "FieldText") {
                 return (
                     <React.View key={field.name} style={styles.field}>
                         <FieldText title={field.display}/>
                     </React.View>
                 );
             }
-            if (field.fieldType === "FieldLabel") {
+            if (field.fieldtype === "FieldLabel") {
                 return (
                     <React.View key={`empty_${begin + i}`} style={styles.field}>
                         <FieldLabel title={field.display}/>
                     </React.View>
                 );
             }
-            if (field.fieldType === "FieldEmpty") {
+            if (field.fieldtype === "FieldEmpty") {
                 return (
                     <React.View key={`empty_${begin + i}`} style={styles.field}>
                         <FieldEmpty/>
