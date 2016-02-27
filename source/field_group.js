@@ -4,6 +4,7 @@ import React from "react-native";
 import FieldText from "./field_text.js"
 import FieldLabel from "./field_label.js"
 import FieldEmpty from "./field_empty.js"
+import FieldPicker from "./field_picker.js"
 
 export default class Component extends React.Component {
     constructor(props) {
@@ -45,6 +46,13 @@ export default class Component extends React.Component {
                     </React.View>
                 );
             }
+            if (field.fieldType === "FieldSelect") {
+                return (
+                    <React.View key={field.name} style={styles.pickerField}>
+                        <FieldPicker title={field.display} pickerData={field.values}/>
+                    </React.View>
+                );
+            }
             if (field.fieldType === "FieldLabel") {
                 return (
                     <React.View key={`empty_${begin + i}`} style={styles.field}>
@@ -82,6 +90,12 @@ const styles = React.StyleSheet.create({
     field: {
         flex: 1,
         height: 70,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    pickerField: {
+        flex: 1,
+        height: 100,
         marginLeft: 10,
         marginRight: 10
     }

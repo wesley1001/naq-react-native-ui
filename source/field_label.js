@@ -2,6 +2,8 @@
 
 import React from "react-native";
 
+/* Parent component: source/field_group.js */
+
 export default class Component extends React.Component {
     render() {
         return (
