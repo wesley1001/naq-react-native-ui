@@ -5,6 +5,7 @@ import FieldText from "./field_text.js"
 import FieldLabel from "./field_label.js"
 import FieldEmpty from "./field_empty.js"
 import FieldPicker from "./field_picker.js"
+import FieldDate from './field_datepicker.js'
 
 export default class Component extends React.Component {
     constructor(props) {
@@ -50,6 +51,13 @@ export default class Component extends React.Component {
                 return (
                     <React.View key={field.name} style={styles.pickerField}>
                         <FieldPicker title={field.display} pickerData={field.values}/>
+                    </React.View>
+                );
+            }
+            if (field.fieldType === "FieldDate") {
+                return (
+                    <React.View key={field.name} style={styles.field}>
+                        <FieldDate title={field.display} date={new Date()}/>
                     </React.View>
                 );
             }
