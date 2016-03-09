@@ -69,11 +69,10 @@ export default class Component extends React.Component {
 
 let styles = React.StyleSheet.create({
     container: {
-        flex: 1,
     },
     title: {
         fontSize: 12,
-        marginTop: 20,
+        marginTop: 10,
         textAlign: "center",
     },
     dateButton: {
@@ -82,7 +81,7 @@ let styles = React.StyleSheet.create({
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: 'gray',
-        height: 60,
+        height: 40,
         fontSize: 14,
         padding: 3,
         flex: 1,

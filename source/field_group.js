@@ -6,6 +6,7 @@ import FieldLabel from "./field_label.js"
 import FieldEmpty from "./field_empty.js"
 import FieldPicker from "./field_picker.js"
 import FieldDate from './field_datepicker.js'
+import FieldLatlng from './latlng.js'
 
 export default class Component extends React.Component {
     constructor(props) {
@@ -40,6 +41,13 @@ export default class Component extends React.Component {
 
     renderFields(fields, begin, end) {
         return fields.slice(begin, end).map((field, i) => {
+            if(field.name === "Latitude, Longitude") {
+                return (
+                    <React.View key={`empty_${begin + i}`} style={styles.field}>
+                        <FieldLatlng title={field.display}/>
+                    </React.View>
+                );
+            }
             if (field.fieldType === "FieldText") {
                 return (
                     <React.View key={field.name} style={styles.field}>
@@ -49,7 +57,7 @@ export default class Component extends React.Component {
             }
             if (field.fieldType === "FieldSelect") {
                 return (
-                    <React.View key={field.name} style={styles.pickerField}>
+                    <React.View key={field.name} style={styles.field}>
                         <FieldPicker title={field.display} pickerData={field.values}/>
                     </React.View>
                 );
@@ -98,12 +106,6 @@ const styles = React.StyleSheet.create({
     field: {
         flex: 1,
         height: 70,
-        marginLeft: 10,
-        marginRight: 10
-    },
-    pickerField: {
-        flex: 1,
-        height: 100,
         marginLeft: 10,
         marginRight: 10
     }

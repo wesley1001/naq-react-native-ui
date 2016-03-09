@@ -24,7 +24,7 @@ const styles = React.StyleSheet.create({
     title: {
         fontSize: 12,
         textAlign: 'center',
-        marginTop: 20
+        marginTop: 10
     },
     text: {
         backgroundColor: '#F8F8F9',

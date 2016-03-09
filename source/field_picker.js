@@ -113,7 +113,9 @@ const styles = React.StyleSheet.create({
         justifyContent: 'flex-end'
     },
     title: {
-        textAlign: 'center'
+        marginTop: 10,
+        textAlign: 'center',
+        fontSize: 12
     },
     picker: {
         width: 600,
@@ -136,7 +138,7 @@ const styles = React.StyleSheet.create({
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: 'gray',
-        height: 30,
+        height: 40,
         fontSize: 14,
         padding: 3,
         flex: 1,
