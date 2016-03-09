@@ -6,6 +6,7 @@ import FieldLabel from "./field_label.js"
 import FieldEmpty from "./field_empty.js"
 import FieldPicker from "./field_picker.js"
 import FieldDate from './field_datepicker.js'
+import FieldMultiLine from './field_multiline.js'
 import FieldLatlng from './latlng.js'
 
 export default class Component extends React.Component {
@@ -76,6 +77,13 @@ export default class Component extends React.Component {
                     </React.View>
                 );
             }
+            if (field.fieldType === "FieldMultiLine") {
+                return (
+                    <React.View key={field.name} style={styles.multiLine}>
+                        <FieldMultiLine title={field.display}/>
+                    </React.View>
+                );
+            }
             if (field.fieldType === "FieldEmpty") {
                 return (
                     <React.View key={`empty_${begin + i}`} style={styles.field}>
@@ -106,6 +114,11 @@ const styles = React.StyleSheet.create({
     field: {
         flex: 1,
         height: 70,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    multiLine: {
+        flex: 1,
         marginLeft: 10,
         marginRight: 10
     }
