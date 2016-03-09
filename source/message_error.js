@@ -11,7 +11,7 @@ export default class Component extends React.Component {
 
 const styles = React.StyleSheet.create({
     container: {
-        backgroundColor: 'red'
+        backgroundColor: '#f94a27'
     },
     message: {
         color: 'white'
