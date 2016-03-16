@@ -9,7 +9,7 @@ const window = React.Dimensions.get('window');
 export default class SideMenu extends React.Component {
     constructor(props) {
         super(props);
-        this.state.buttons = {
+        this.state = {
             buttons: props.buttons
         }
     }
