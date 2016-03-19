@@ -91,6 +91,20 @@ export default class Component extends React.Component {
                     </React.View>
                 );
             }
+            if (field.fieldType === "FieldValue") {
+                return (
+                    <React.View key={field.name} style={styles.field}>
+                        <FieldText title={field.display} defaultValue={field.value}/>
+                    </React.View>
+                );
+            }
+            if (field.fieldType === "FieldMultiValue") {
+                return (
+                    <React.View key={field.name} style={styles.multiLine}>
+                        <FieldMultiLine title={field.display} defaultValue={field.value} {...this.props}/>
+                    </React.View>
+                );
+            }
         });
     }
 
