@@ -10,12 +10,16 @@ export default class Component extends React.Component {
         const numberOfRows = props.rows || 12;
         const numberOfCols = props.fields.length / numberOfRows;
 
-        console.log("Rows: ", numberOfRows);
-        console.log("Cols: ", numberOfCols);
         this.state = {
+            surveydate: props.fields[0].value,
             numberOfRows: numberOfRows,
             numberOfCols: numberOfCols
         };
+    }
+
+    onValChange(kv) {
+        this.props.onValChange && (kv.date = this.state.surveydate)
+        this.props.onValChange && this.props.onValChange(kv)
     }
 
     renderColumns(fields) {
@@ -34,18 +38,14 @@ export default class Component extends React.Component {
 
     renderFields(fields, begin, end) {
         return fields.slice(begin, end).map((field, i) => {
-            if (field.fieldType === "FieldText") {
-                return (
-                    <React.View key={field.name+i} style={styles.field}>
-                        <FieldText title={field.display}/>
-                    </React.View>
-                );
-            }
-
             if (field.fieldType === "FieldValue") {
                 return (
                     <React.View key={field.name+i} style={styles.field}>
-                        <FieldText title={field.display} defaultValue={field.value}/>
+                        <FieldText {...this.props}
+                            onValChange={this.onValChange.bind(this)}
+                            title={field.display}
+                            defaultValue={field.value}
+                        />
                     </React.View>
                 );
             }
@@ -54,31 +54,14 @@ export default class Component extends React.Component {
 
     render() {
         return (
-            <React.ScrollView
-                contentContainerStyle={styles.scrollContainer}
-                style={styles.container}
-                horizontal={true}
-                showsHorizontalScrollIndicator={true}
-                showsVerticalScrollIndicator={false}>
+            <React.View>
                 {this.renderColumns(this.props.fields)}
-            </React.ScrollView>
+            </React.View>
         );
     }
 }
 
 const styles = React.StyleSheet.create({
-    container: {
-        flex: 4,
-        alignSelf: 'center',
-        flexDirection: 'row',
-        flexWrap: "wrap",
-        marginTop: 30,
-        height: 745,
-    },
-    scrollContainer: {
-        flexDirection: 'row',
-        flexWrap: "wrap"
-    },
     column: {
         flex: 1,
     },

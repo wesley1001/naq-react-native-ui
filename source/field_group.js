@@ -94,7 +94,7 @@ export default class Component extends React.Component {
             if (field.fieldType === "FieldValue") {
                 return (
                     <React.View key={field.name} style={styles.field}>
-                        <FieldText title={field.display} defaultValue={field.value}/>
+                        <FieldText title={field.display} defaultValue={field.value} {...this.props}/>
                     </React.View>
                 );
             }
