@@ -11,14 +11,14 @@ export default class Component extends React.Component {
         const numberOfCols = props.fields.length / numberOfRows;
 
         this.state = {
-            surveydate: props.fields[0].value,
+            id: props.id,
             numberOfRows: numberOfRows,
             numberOfCols: numberOfCols
         };
     }
 
     onValChange(kv) {
-        this.props.onValChange && (kv.date = this.state.surveydate)
+        this.props.onValChange && (kv.id = this.state.id)
         this.props.onValChange && this.props.onValChange(kv)
     }
 
