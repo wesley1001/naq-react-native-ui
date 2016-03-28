@@ -8,14 +8,14 @@ export default class Component extends React.Component {
     constructor(props){
         super(props);
         this.onChangeText = props.onChangeText;
-        props.onValChange && (this.onChangeText = this.onValChange.bind(this))
+        this.state = { val: props.defaultValue||"" }
     }
 
-    onValChange(value) {
+    onValChange() {
         this.props.onValChange({
             realmType: this.props.realmType,
             key: this.props.title,
-            value: value
+            value: this.state.val
         })
     }
 
@@ -26,7 +26,8 @@ export default class Component extends React.Component {
                     {this.props.title}
                 </React.Text>
                 <React.TextInput {...this.props}
-                    onChangeText={this.onChangeText}
+                    onChangeText={this.onChangeText?this.onChangeText:((val)=> this.setState({val}))}
+                    onBlur={this.props.onValChange?this.onValChange.bind(this):void(0)}
                     style={styles.text}/>
             </React.View>
         );

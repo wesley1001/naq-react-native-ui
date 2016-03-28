@@ -40,8 +40,16 @@ export default class Component extends React.Component {
         });
     }
 
+    findValue(key, featureGroup){
+        if(!featureGroup || !this.props.defaultValues) { return; }
+        let found = this.props.defaultValues.filter((kv) => key === kv.key && featureGroup === kv.type);
+        if(found.length) { return found[0]; }
+        return "";
+    }
+
     renderFields(fields, begin, end) {
         return fields.slice(begin, end).map((field, i) => {
+            let foundValue = this.findValue(field.name, field.featureGroup);
             if(field.name === "Latitude, Longitude") {
                 return (
                     <React.View key={`empty_${begin + i}`} style={styles.field}>
@@ -57,9 +65,11 @@ export default class Component extends React.Component {
                 );
             }
             if (field.fieldType === "FieldSelect") {
+                let {title, ...other} = this.props
                 return (
                     <React.View key={field.name} style={styles.field}>
-                        <FieldPicker title={field.display} pickerData={field.values}/>
+                        <FieldPicker {...other} title={field.name} foundValue={foundValue}
+                            pickerData={field.values} />
                     </React.View>
                 );
             }

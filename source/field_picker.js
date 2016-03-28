@@ -7,8 +7,9 @@ export default class PickerComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            initial: props.pickerData[0],
-            value: props.pickerData[0],
+            initial: props.foundValue && props.foundValue.value || "",
+            value: props.foundValue && props.foundValue.value || "",
+            id: props.foundValue && props.foundValue.id || "",
             fields: props.pickerData,
             pickerState: false,
             visible: true,
@@ -19,6 +20,12 @@ export default class PickerComponent extends React.Component {
     }
 
     togglePicker(e) {
+        e === "save" && this.props.handleChange && this.props.handleChange({
+            id: this.state.id,
+            key: "value",
+            value: this.state.value,
+            realmType: this.props.realmType
+        })
         this.setState({
             pickerState: !this.state.pickerState,
             value: e === "close" ? this.state.initial : this.state.value,
@@ -37,7 +44,7 @@ export default class PickerComponent extends React.Component {
 
     renderPickerItems() {
         return this.state.fields.map((field) => {
-            return <React.Picker.Item key={field} label={field} value={field} />
+            return <React.Picker.Item key={field} label={field.toUpperCase()} value={field.toUpperCase()} />
         })
     }
 

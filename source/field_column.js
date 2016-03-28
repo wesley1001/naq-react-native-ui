@@ -67,7 +67,7 @@ const styles = React.StyleSheet.create({
     },
     field: {
         height: 60,
-        width: 120,
+        width: 130,
         marginLeft: 10,
         marginRight: 10
     }
